@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Исключаем test_mcp (это отдельный git репозиторий)
+test_mcp/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Временные файлы
+*.log
+*.tmp
+
