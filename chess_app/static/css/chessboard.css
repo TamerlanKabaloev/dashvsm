@@ -1,0 +1,141 @@
+.chessboard {
+    width: 100%;
+    max-width: 600px;
+    aspect-ratio: 1;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    border: 3px solid #333;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.square {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5vw;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.square.light {
+    background-color: #f0d9b5;
+}
+
+.square.dark {
+    background-color: #b58863;
+}
+
+.square.selected {
+    background-color: #f6f669 !important;
+}
+
+.square.possible-move {
+    background-color: #86f3ff !important;
+}
+
+.square.possible-move::after {
+    content: '';
+    width: 30%;
+    height: 30%;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.square.last-move {
+    background-color: #cdd26a !important;
+}
+
+.square.check {
+    background-color: #ff6b6b !important;
+}
+
+.piece {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    cursor: grab;
+    transition: transform 0.1s;
+}
+
+.piece.dragging {
+    cursor: grabbing;
+    opacity: 0.8;
+    z-index: 1000;
+}
+
+.piece:hover {
+    transform: scale(1.1);
+}
+
+/* Unicode chess pieces */
+.piece-white-king::before { content: '♔'; }
+.piece-white-queen::before { content: '♕'; }
+.piece-white-rook::before { content: '♖'; }
+.piece-white-bishop::before { content: '♗'; }
+.piece-white-knight::before { content: '♘'; }
+.piece-white-pawn::before { content: '♙'; }
+
+.piece-black-king::before { content: '♚'; }
+.piece-black-queen::before { content: '♛'; }
+.piece-black-rook::before { content: '♜'; }
+.piece-black-bishop::before { content: '♝'; }
+.piece-black-knight::before { content: '♞'; }
+.piece-black-pawn::before { content: '♟'; }
+
+/* Coordinates */
+.square::before {
+    position: absolute;
+    font-size: 12px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.square[data-file="a"]::before {
+    content: 'a';
+    bottom: 2px;
+    left: 4px;
+}
+
+.square[data-file="h"]::before {
+    content: 'h';
+    bottom: 2px;
+    right: 4px;
+}
+
+.square[data-rank="1"]::after {
+    content: '1';
+    position: absolute;
+    top: 2px;
+    right: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.square[data-rank="8"]::after {
+    content: '8';
+    position: absolute;
+    top: 2px;
+    right: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 600px) {
+    .chessboard {
+        max-width: 100%;
+    }
+    
+    .square {
+        font-size: 5vw;
+    }
+}
+

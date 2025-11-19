@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Игра в шахматы - {{ game_id }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/chessboard.css') }}">
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <div class="game-id">ID игры: <span id="gameId">{{ game_id }}</span></div>
+            <button id="copyLinkBtn" class="btn btn-small">Скопировать ссылку</button>
+        </div>
+        
+        <div class="game-layout">
+            <div class="sidebar left-sidebar">
+                <div class="player-info">
+                    <div class="player white-player">
+                        <div class="player-color white"></div>
+                        <div class="player-name" id="whitePlayer">Белые</div>
+                        <div class="player-status" id="whiteStatus">Ожидание...</div>
+                    </div>
+                </div>
+                <div class="moves-panel">
+                    <h3>Ходы</h3>
+                    <div id="movesList" class="moves-list"></div>
+                </div>
+            </div>
+            
+            <div class="board-container">
+                <div id="board" class="chessboard"></div>
+                <div class="game-status" id="gameStatus">Ожидание соперника...</div>
+            </div>
+            
+            <div class="sidebar right-sidebar">
+                <div class="player-info">
+                    <div class="player black-player">
+                        <div class="player-color black"></div>
+                        <div class="player-name" id="blackPlayer">Черные</div>
+                        <div class="player-status" id="blackStatus">Ожидание...</div>
+                    </div>
+                </div>
+                <div class="game-controls">
+                    <button id="resignBtn" class="btn btn-danger">Сдаться</button>
+                    <button id="newGameBtn" class="btn btn-secondary">Новая игра</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chess.js@1.0.0-beta.6/chess.min.js"></script>
+    <script src="{{ url_for('static', filename='js/game.js') }}"></script>
+</body>
+</html>
+
